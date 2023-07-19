@@ -29,8 +29,8 @@
                 </div>
                 <span>ATIVAR RECURSO DE SEGURANÇA</span>
             </a>
-            <h1 class="value">
-                R$500.215 mil
+            <h1 class="value" id="resultado">
+                
             </h1>
             <p class="subvalue">já foram recuperados nos últimos 7 dias…</p>
             <h1 class="saque">Saque imediatamente seu dinheiro perdido nesses jogos e algoritmos fraudulentos!</h1>
@@ -86,6 +86,29 @@
         </main>
         <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
         <script type="module">
+            window.addEventListener('load', exibirNumeros)
+
+            function exibirNumeros() {
+                let numeroAtual = 500000;
+                const intervalo = 25;
+
+                const intervalID = setInterval(function() {
+                    document.getElementById("resultado").textContent = formatNumber(numeroAtual);
+                    numeroAtual++;
+
+                    if (numeroAtual > 550000) {
+                        clearInterval(intervalID);
+                    }
+                }, intervalo);
+            }
+
+            function formatNumber(numeroAtual) {
+                const numeroFormatado = numeroAtual.toString().padStart(6, '0');
+                const parte1 = numeroFormatado.slice(0, 3);
+                const parte2 = numeroFormatado.slice(3); 
+                return `R$${parte1}.${parte2} mil`;
+            }
+
             var swiper = new Swiper(".mySwiper", {
                 breakpoints:{
                     280: {
